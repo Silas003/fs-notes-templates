@@ -1,2 +1,2 @@
-deployment-file-path:templates/network.yaml
+deployment-file-path:templates/network.yml
 stack-name:network
