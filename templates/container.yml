@@ -3,8 +3,8 @@ AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   Image:
     Type: String
-    Description: The Docker image to use for the container
-    Default: 266735814394.dkr.ecr.eu-central-1.amazonaws.com/notes:b8d6a8c9ffa5e6586f7b593878042b0a434679ea
+    Default: 266735814394.dkr.ecr.eu-central-1.amazonaws.com/notes:latest
+    Description: The image to use for the container
 
   TaskCPU:
     Type: Number
@@ -134,16 +134,16 @@ Resources:
           Value: !Ref ServiceName
       TaskRoleArn: !GetAtt ECSTaskRole.Arn
 
-  ECR:
-    Type: AWS::ECR::Repository
-    Properties:
-      EncryptionConfiguration:
-        EncryptionType: KMS
-      ImageTagMutability: IMMUTABLE
-      RepositoryName: !Ref RepositoryName
-      Tags:
-        - Key: Name
-          Value: !Ref RepositoryName
+#  ECR:
+#    Type: AWS::ECR::Repository
+#    Properties:
+#      EncryptionConfiguration:
+#        EncryptionType: KMS
+#      ImageTagMutability: IMMUTABLE
+#      RepositoryName: !Ref RepositoryName
+#      Tags:
+#        - Key: Name
+#          Value: !Ref RepositoryName
 
 
   TaskExecutionRole:
@@ -203,6 +203,7 @@ Resources:
   ECSService:
     Type: AWS::ECS::Service
     Properties:
+      HealthCheckGracePeriodSeconds: 300
       ServiceName: !Ref ServiceName
       Cluster: !Ref ECSCluster
       DesiredCount: !Ref DesiredCount

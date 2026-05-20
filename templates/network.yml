@@ -53,6 +53,7 @@ Resources:
 
   PublicSubnet1:
     Type: AWS::EC2::Subnet
+    DependsOn: InternetGatewayAttachment
     Properties:
       AvailabilityZone: !Ref PublicSubnet1Az
       CidrBlock: !Ref PublicSubnet1Cidr
@@ -64,6 +65,7 @@ Resources:
 
   PublicSubnet2:
     Type: AWS::EC2::Subnet
+    DependsOn: InternetGatewayAttachment
     Properties:
       AvailabilityZone: !Ref PublicSubnet2Az
       CidrBlock: !Ref PublicSubnet2Cidr
@@ -122,15 +124,22 @@ Resources:
       GatewayId: !Ref InternetGateway
       RouteTableId: !Ref PublicRouteTable
 
+
+
   RegionalNATGateway:
     Type: AWS::EC2::NatGateway
+    DependsOn:
+      - InternetGatewayAttachment
+      - PublicRoute
+      - PublicSubnet1RouteTableAssociation
+      - PublicSubnet2RouteTableAssociation
     Properties:
       AvailabilityMode: regional
       ConnectivityType: public
+      VpcId: !Ref CustomVPC
       Tags:
         - Key: Name
           Value: RegionalNATGateway
-      VpcId: !Ref CustomVPC
 
   PrivateRouteTable:
     Type: AWS::EC2::RouteTable
@@ -190,6 +199,7 @@ Resources:
 
   ECRApiEndpoint:
     Type: AWS::EC2::VPCEndpoint
+    DependsOn: RegionalNATGateway
     Properties:
       VpcEndpointType: Interface
       ServiceName: !Sub 'com.amazonaws.${AWS::Region}.ecr.api'
@@ -203,6 +213,7 @@ Resources:
 
   ECRDkrEndpoint:
     Type: AWS::EC2::VPCEndpoint
+    DependsOn: RegionalNATGateway
     Properties:
       VpcEndpointType: Interface
       ServiceName: !Sub 'com.amazonaws.${AWS::Region}.ecr.dkr'
@@ -216,6 +227,7 @@ Resources:
 
   S3GatewayEndpoint:
     Type: AWS::EC2::VPCEndpoint
+    DependsOn: RegionalNATGateway
     Properties:
       VpcEndpointType: Gateway
       ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
