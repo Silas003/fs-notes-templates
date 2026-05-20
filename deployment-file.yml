@@ -1,2 +1,2 @@
-deployment-file-path:templates/main.yml
-stack-name:notes-main
+deployment-file-path: templates/main.yml
+stack-name: notes-main
