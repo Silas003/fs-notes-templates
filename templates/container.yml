@@ -149,6 +149,7 @@ Resources:
   TaskExecutionRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: notes-task-execution-role
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -162,6 +163,7 @@ Resources:
   ECSTaskRole:
     Type: AWS::IAM::Role
     Properties:
+      RoleName: notes-task-role
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:

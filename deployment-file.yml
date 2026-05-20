@@ -1,2 +1,2 @@
-deployment-file-path:templates/network.yml
-stack-name:network
+deployment-file-path:templates/main.yml
+stack-name:notes-main

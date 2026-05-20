@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   TemplatesBucketUrl:
     Type: String
-    Default: https://s3.eu-central-1.amazonaws.com/cdkworkshop-assets/templates
+    Default: https://eu-central-1.console.aws.amazon.com/s3/buckets/silas-templates
 
 Resources:
   NetworkingStack:

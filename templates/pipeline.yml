@@ -26,6 +26,10 @@ Parameters:
     Type: Number
     Default: 5
 
+  AppSpecSourceBucket:
+    Type: String
+    Default: appspec-source-bucket
+
 Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket

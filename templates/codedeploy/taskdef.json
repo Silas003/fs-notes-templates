@@ -4,8 +4,8 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
-  "executionRoleArn": "REPLACE_WITH_TASK_EXECUTION_ROLE_ARN",
-  "taskRoleArn": "REPLACE_WITH_TASK_ROLE_ARN",
+  "executionRoleArn": "arn:aws:iam::266735814394:role/notes-task-execution-role",
+  "taskRoleArn": "arn:aws:iam::266735814394:role/notes-task-role",
   "containerDefinitions": [
     {
       "name": "notes",
