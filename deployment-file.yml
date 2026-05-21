@@ -1,2 +1,4 @@
-deployment-file-path: templates/main.yml
-stack-name: notes-main
+template-file-path: template/main.yml
+parameters:
+  TemplatesBucketUrl: https://silas-templates.s3.eu-central-1.amazonaws.com
+tags: {}
