@@ -26,10 +26,6 @@ Parameters:
     Type: Number
     Default: 5
 
-  AppSpecSourceBucket:
-    Type: String
-    Default: appspec-source-bucket
-
 Resources:
   ArtifactBucket:
     Type: AWS::S3::Bucket
@@ -154,8 +150,8 @@ Resources:
         DeploymentType: BLUE_GREEN
       BlueGreenDeploymentConfiguration:
         DeploymentReadyOption:
-          ActionOnTimeout: CONTINUE_DEPLOYMENT
-          WaitTimeInMinutes: 0
+          ActionOnTimeout: STOP_DEPLOYMENT
+          WaitTimeInMinutes: 60
         TerminateBlueInstancesOnDeploymentSuccess:
           Action: TERMINATE
           TerminationWaitTimeInMinutes: !Ref TerminationWaitTimeInMinutes
