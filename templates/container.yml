@@ -134,16 +134,16 @@ Resources:
           Value: !Ref ServiceName
       TaskRoleArn: !GetAtt ECSTaskRole.Arn
 
-#  ECR:
-#    Type: AWS::ECR::Repository
-#    Properties:
-#      EncryptionConfiguration:
-#        EncryptionType: KMS
-#      ImageTagMutability: IMMUTABLE
-#      RepositoryName: !Ref RepositoryName
-#      Tags:
-#        - Key: Name
-#          Value: !Ref RepositoryName
+  ECR:
+    Type: AWS::ECR::Repository
+    Properties:
+      EncryptionConfiguration:
+        EncryptionType: KMS
+      ImageTagMutability: MUTABLE
+      RepositoryName: !Ref RepositoryName
+      Tags:
+        - Key: Name
+          Value: !Ref RepositoryName
 
 
   TaskExecutionRole:
