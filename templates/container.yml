@@ -58,7 +58,7 @@ Parameters:
 
   LogRetentionDays:
     Type: Number
-    Default: 27
+    Default: 30
 
   ClusterName:
     Type: String
