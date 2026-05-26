@@ -23,7 +23,6 @@ Parameters:
       - 256
       - 512
       - 1024
-      - 2048
 
   PrivateSubnet1:
     Type: String
@@ -59,7 +58,7 @@ Parameters:
 
   LogRetentionDays:
     Type: Number
-    Default: 30
+    Default: 27
 
   ClusterName:
     Type: String
