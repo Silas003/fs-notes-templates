@@ -87,11 +87,11 @@ Parameters:
 
   ScaleInCooldown:
     Type: Number
-    Default: 300
+    Default: 310
 
   ScaleOutCooldown:
     Type: Number
-    Default: 60
+    Default: 70
 
   RepositoryName:
     Type: String
