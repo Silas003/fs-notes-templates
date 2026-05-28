@@ -18,7 +18,7 @@ Parameters:
 
   TestListenerPort:
     Type: Number
-    Default: 8081              # ← fixed, not same as container port
+    Default: 8081
 
   TargetGroupName:
     Type: String
@@ -45,7 +45,7 @@ Resources:
         - !Ref SubnetGroup2
       LoadBalancerAttributes:
         - Key: deletion_protection.enabled
-          Value: "true"          # ← prevents accidental deletion
+          Value: "true"
       Tags:
         - Key: Name
           Value: !Ref ALBName
@@ -63,7 +63,7 @@ Resources:
         - IpProtocol: tcp
           FromPort: !Ref TestListenerPort
           ToPort: !Ref TestListenerPort
-          CidrIp: 0.0.0.0/0    # ← now 8081, not 8080
+          CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
           Value: ALBSecurityGroup
@@ -81,7 +81,7 @@ Resources:
 
   TestListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
-    DependsOn: ALBListener       # ← explicit ordering
+    DependsOn: ALBListener
     Properties:
       DefaultActions:
         - Type: forward
@@ -93,12 +93,12 @@ Resources:
   ALBTargetGroup:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties:
-      HealthCheckEnabled: true   # ← added
+      HealthCheckEnabled: true
       HealthCheckPath: /health
       HealthCheckIntervalSeconds: 30
       HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 2
-      UnhealthyThresholdCount: 3  # ← consistent with green
+      UnhealthyThresholdCount: 3
       Name: !Ref TargetGroupName
       Port: !Ref TargetGroupPort
       Protocol: HTTP
@@ -114,7 +114,7 @@ Resources:
       HealthCheckEnabled: true
       HealthCheckPath: /health
       HealthCheckIntervalSeconds: 30
-      HealthCheckTimeoutSeconds: 10  # ← consistent with blue
+      HealthCheckTimeoutSeconds: 10
       HealthyThresholdCount: 2
       UnhealthyThresholdCount: 3
       Name: !Ref GreenTargetGroupName
