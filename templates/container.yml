@@ -92,10 +92,6 @@ Parameters:
     Type: Number
     Default: 70
 
-  RepositoryName:
-    Type: String
-    Default: notes
-
 Resources:
   NotesLogGroup:
     Type: AWS::Logs::LogGroup
@@ -132,18 +128,6 @@ Resources:
         - Key: Name
           Value: !Ref ServiceName
       TaskRoleArn: !GetAtt ECSTaskRole.Arn
-
-  ECR:
-    Type: AWS::ECR::Repository
-    Properties:
-      EncryptionConfiguration:
-        EncryptionType: KMS
-      ImageTagMutability: MUTABLE
-      RepositoryName: !Ref RepositoryName
-      Tags:
-        - Key: Name
-          Value: !Ref RepositoryName
-
 
   TaskExecutionRole:
     Type: AWS::IAM::Role
