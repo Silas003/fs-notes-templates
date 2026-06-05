@@ -60,10 +60,6 @@ Resources:
           FromPort: !Ref ListenerPort
           ToPort: !Ref ListenerPort
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: !Ref TestListenerPort
-          ToPort: !Ref TestListenerPort
-          CidrIp: 0.0.0.0/0
       Tags:
         - Key: Name
           Value: ALBSecurityGroup
