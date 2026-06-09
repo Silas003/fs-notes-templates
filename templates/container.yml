@@ -70,7 +70,7 @@ Parameters:
 
   DesiredCount:
     Type: Number
-    Default: 1
+    Default: 0
 
   AutoScalingMinCapacity:
     Type: Number
